@@ -37,12 +37,16 @@ static void setup_signal_handler(void)
     sigaction(SIGINT, &sa, NULL);
 }
 
-int main(void)
+int main(int argc, char **argv, char **env)
 {
+    (void)argc;
+    (void)argv;
+
+    env_config_t *env_config = init_env_config(env);
     configure_io_buffers();
     setup_signal_handler();
     while (1) {
-        read_and_execute_command();
+        read_and_execute_command(env_config);
     }
     return 0;
 }

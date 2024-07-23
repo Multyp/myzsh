@@ -46,16 +46,18 @@ int read_input(char *line)
 void execute_command(char **args, int arg_count)
 {
     command_t *command = init_command(args[0], args, arg_count);
+
     command->vtable->execute(command);
     free_command(command);
 }
 
-void read_and_execute_command(void)
+void read_and_execute_command(env_config_t *env_config)
 {
     char line[BUFFER_SIZE];
     char **args;
     int arg_count;
     int status = read_input(line);
+    (void)env_config;
 
     if (status == -1) {
         exit(0);

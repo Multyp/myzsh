@@ -11,6 +11,7 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include <string.h>
+    #include "env_config.h"
 
     #define BUFFER_SIZE 1024
 
@@ -93,6 +94,11 @@ command_t *init_command(const char *name, char **args, int arg_count);
  */
 void free_command(command_t *command);
 
-void read_and_execute_command(void);
+/**
+ * @brief Read and execute a command.
+ *
+ * @param env_config The environment configuration for the command.
+ */
+void read_and_execute_command(env_config_t *env_config);
 
 #endif /* !COMMANDS_H_ */
